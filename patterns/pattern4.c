@@ -1,8 +1,10 @@
 /*
-   *
-  **
- ***
-****
+	WAP to print the following pattern in C
+
+	   *
+	  **
+	 ***
+	****
 */
 
 #include<stdio.h>

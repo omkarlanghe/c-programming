@@ -1,8 +1,10 @@
 /*
-A
-AB
-ABC
-ABCD
+	WAP to print the following pattern in C
+
+	A
+	BC
+	DEF
+	GHIJ
 */
 
 #include<stdio.h>

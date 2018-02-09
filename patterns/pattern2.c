@@ -1,3 +1,14 @@
+/*
+
+WAP to print the following pattern in C
+
+	****
+	***
+	**
+	*
+
+*/
+
 #include<stdio.h>
 
 int main(){
@@ -13,12 +24,3 @@ void pattern(int n){
 	}
 }
 
-/*
-
-****
-***
-**
-*
-
-
-*/
