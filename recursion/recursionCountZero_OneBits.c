@@ -1,6 +1,6 @@
 /*
 	
-	Write a recursive funtion which will return the count of number of 0's and 1's Bits in a 		given number
+	Write a recursive funtion which will return the count of number of 0's and 1's Bits in a given number
 	
 */
 
