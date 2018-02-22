@@ -36,5 +36,5 @@ int TurnOnBits(int no, int noOfBits, int pos)
 	x = (x<<noOfBits)-1;
 	x = x<<(pos-noOfBits);
 	
-	return no&x;
+	return no|x;
 }
