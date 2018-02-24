@@ -17,7 +17,7 @@ int main()
 	
 	printf("Result after Turn Off Bits: %d\n",TurnOffBits(no,noOfBits,pos));
 	printf("Result after Turn On Bits: %d\n",TurnOnBits(no,noOfBits,pos));
-	
+	printf("Result after Toggling: %d\n",ToggleBits(no,noOfBits,pos));	
 }
 
 int TurnOffBits(int no, int noOfBits, int pos)
@@ -37,4 +37,13 @@ int TurnOnBits(int no, int noOfBits, int pos)
 	x = x<<(pos-noOfBits);
 	
 	return no|x;
+}
+
+int ToggleBits(int no, int noOfBits, int pos)
+{
+	int x = 1;
+	x = (x<<noOfBits)-1;
+	x = x<<(pos-noOfBits);
+	
+	return no^x;
 }
