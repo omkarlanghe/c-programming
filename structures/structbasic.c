@@ -15,7 +15,7 @@ int main()
 	
 	printf("struct point p:\n x=%d y=%d\n",p);
 	printf("struct point l:\n x=%d y=%d\n",l);
-	printf("struct point A:\n x=%d y=%d\n",A);
+	printf("struct point A:\n x=%d y=%d\n",A.x,A.y);
 	
 	return 0;
 
