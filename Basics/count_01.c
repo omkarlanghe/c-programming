@@ -2,16 +2,17 @@
 	write a program to count number of zero and one's bit in a given number
 */
 #include<stdio.h>
+int countZeroBits(int no);
+int countOneBits(int no);
 int main(){
-	int no1,no2;
+	int no;
 	
 	printf("Enter the number:\n");
-	scanf("%d",&no1);
-	printf("Enter the number:\n");
-	scanf("%d",&no2);
-	printf("Count of Zero bits is:%d\n",countZeroBits(no1));
-	printf("Count of One bits is:%d\n",countOneBits(no2));
-
+	scanf("%d",&no);
+	printf("Count of Zero bits is:%d\n",countZeroBits(no));
+	printf("Count of One bits is:%d\n",countOneBits(no));
+	
+	return 0;
 }
 
 int countZeroBits(int no){

@@ -3,7 +3,7 @@
 */
 
 #include<stdio.h>
-
+int isPrime(int no);
 int main(){
 
 	int no;
@@ -13,11 +13,11 @@ int main(){
 	
 	if(isPrime(no))
 	{
-		printf("The number is Prime\n",isPrime(no));
+		printf("The number is Prime %d\n",isPrime(no));
 	}
 	else
 	{
-		printf("The number is not Prime\n",isPrime(no));
+		printf("The number is not Prime %d\n",isPrime(no));
 	}
 }
 

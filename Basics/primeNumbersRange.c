@@ -7,7 +7,7 @@
 
 
 #include<stdio.h>
-
+int primeRange(int min, int max);
 int main()
 {
 	int primeRange(int min, int max);
