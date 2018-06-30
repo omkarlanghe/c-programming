@@ -11,7 +11,7 @@ int primeRange(int min, int max);
 int main()
 {
 	int primeRange(int min, int max);
-	int min,max;
+	int min,max;	
 	
 	printf("Enter the min limit:\n");
 	scanf("%d",&min);
