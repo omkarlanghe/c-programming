@@ -20,7 +20,14 @@ void HomeScreen()
 
 	printf("WELCOME TO C-PROGRAMMING\n\n");
 	printf("Enter your choice:\n\n");
-	printf("1. Basic Programs\n2. Bitwise Operators\n3. Arrays\n4. Pointers\n5. Recursion\n6. Strings\n7. Pattern Programs\n8. Exit\n");
+	printf("1. Basic Programs\n"
+			"2. Bitwise Operators\n"
+			"3. Arrays\n"
+			"4. Pointers\n"
+			"5. Recursion\n"
+			"6. Strings\n"
+			"7. Pattern Programs\n"
+			"8. Exit\n");
 	scanf("%d",&choice);
 	
 	switch(choice)
