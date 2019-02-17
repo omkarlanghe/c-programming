@@ -1,11 +1,21 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include<stdbool.h>
 
 void HomeScreen();
 void CProgrammingFundamentals();
+void BitwiseOperators();
 void ArithmeticOperations();
 void ArmstrongNumber();
 void FibonacciSeries();
+int AdditionOfEven(int num1);
+int AdditionOfOdd(int num1);
+bool IsMultipleOfEight(int num1);
+bool IsMultipleOfSixteen(int num1);
+bool IsMultipleOfThirtyTwo(int num1);
+int CountOfZeroBits(int num1);
+int CountOfOneBits(int num1);
+bool IsOddEvenNumber(int num1);
 int MaximumNumber(int num1, int num2, int num3);
 int MinimumNumber(int num1, int num2, int num3);
 int LeapYear(int year);
@@ -37,6 +47,8 @@ void HomeScreen()
 			CProgrammingFundamentals();
 			break;
 		case 2:
+			printf("This section contain's all the basic program's required to understand Bitwise operators\n\n");
+			BitwiseOperators();
 			break;
 		case 3:
 			break;
@@ -55,6 +67,107 @@ void HomeScreen()
 	}	
 }
 
+void BitwiseOperators()
+{
+	int choice = 0, retVal = 0;
+	int num1 = 0, evenSum = 0, oddSum = 0;
+	printf("WELCOME TO BITWISE OPERATORS\n\n");
+	printf("Enter your choice:\n\n");
+	printf("1. Addition Of Even and Odd Digits\n"
+			"2. Multiple of 8,16,32\n"
+			"3. Count O and 1 bits from a given number\n"
+			"4. Is Odd or Even via bitwise\n"
+			"5. Turn On bits\n"
+			"6. Turn Off bits\n"
+			"7. Toggle bits\n"
+			"8. Swap bits\n"
+			"9. Turn Off right most one bit\n"
+			"10. Swap bits at different position\n");
+	scanf("%d", &choice);
+
+	switch(choice)
+	{
+		case 1:
+			printf("Addition of Even and Odd Digit's from a given number\n\n");
+			printf("Enter the number:\n");
+			scanf("%d",&num1);
+
+			evenSum = AdditionOfEven(num1);
+		       	printf("Addition of even digit's in a given numbers is: %d\n",evenSum);
+			oddSum = AdditionOfOdd(num1);
+			printf("Addition of odd digit's in a given numbers is: %d\n", oddSum);
+			HomeScreen();
+			break;
+		case 2:
+			printf("Is Multiple of 8,16 and 32\n\n");
+			printf("Enter the number to check:\n");
+			scanf("%d", &num1);
+			//Multiple of eight
+			if(IsMultipleOfEight(num1) == true)
+			{
+				printf("The number %d is multiple of eight\n",num1);
+			}
+			else
+			{
+				printf("The number %d is not multiple of eight\n",num1);
+			}
+			//Multiple of sixteen
+			if(IsMultipleOfSixteen(num1) == true)
+			{
+				printf("The number %d is multiple of sixteen\n",num1);
+			}
+			else
+			{
+				printf("The number %d is not multiple of sixteen\n",num1);
+			}
+			//Multiple of thirty two
+			if(IsMultipleOfThirtyTwo(num1) == true)
+			{
+				printf("The number %d is not multiple of thirty two\n", num1);
+			}
+			else
+			{
+				printf("The number %d is not multiple of thirty two\n", num1);
+			}
+			HomeScreen();
+			break;
+		case 3:
+			printf("Program to count 0 and 1 bits in a given number\n\n");
+			printf("Enter the number:\n");
+			scanf("%d",&num1);
+
+			retVal = CountOfZeroBits(num1);
+			printf("Count of zero bits in a given number is: %d\n", retVal);
+			retVal = CountOfOneBits(num1);
+			printf("Count of one bits in a given number is: %d\n", retVal);
+			HomeScreen();
+			break;
+		case 4:
+			printf("Program to check whether the given number is odd or even via Bitwise-&\n\n");
+			printf("Enter the number to check:\n");
+			scanf("%d",&num1);
+
+			if(IsOddEvenNumber(num1) == true)
+				printf("The number %d is odd number\n", num1);
+			else
+				printf("The number %d is even number\n", num1);
+			HomeScreen();
+			break;
+		case 5:
+			break;
+		case 6:
+			break;
+		case 7:
+			break;
+		case 8:
+			break;
+		case 9:
+			break;
+		case 10:
+			break;
+
+	}
+}
 void CProgrammingFundamentals()
 {
 	int choice = 0;
@@ -170,6 +283,106 @@ void CProgrammingFundamentals()
 			SizeOfDataTypesInC();
 			break;
 	}
+}
+
+bool IsOddEvenNumber(int num1)
+{
+	if((num1&1) != 0)
+		return true;
+	else
+		return false;
+}
+
+int CountOfZeroBits(int num1)
+{
+	int x = 1;
+	int count = 0;
+	while(x != 0)
+	{
+		if((num1&x)==0)
+			count++;
+		x = x<<1;
+	}
+	return count;
+}
+
+int CountOfOneBits(int num1)
+{
+	int x = 1;
+	int count = 0;
+	while(x != 0)
+	{
+		if((num1&x)!=0)
+			count++;
+		x = x<<1;
+	}
+	return count;
+}
+
+bool IsMultipleOfEight(int num1)
+{
+	if((num1&7) == 0)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+bool IsMultipleOfSixteen(int num1)
+{
+	if((num1&15) == 0)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}	
+}
+
+bool IsMultipleOfThirtyTwo(int num1)
+{
+	if((num1&31) == 0)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+int AdditionOfEven(int num1)
+{
+	int rem, sum = 0;
+	while(num1 != 0)
+	{
+		rem = num1%10;
+		if((rem&1) == 0)
+		{
+			sum = sum + rem;
+		}
+		num1 = num1/10;
+	}
+	return(sum);
+}
+
+int AdditionOfOdd(int num1)
+{
+	int rem, sum = 0;
+	while(num1 != 0)
+	{
+		rem = num1%10;
+		if((rem&1)!=0)
+		{
+			sum = sum + rem;
+		}
+		num1 = num1/10;
+	}
+	return(sum);
 }
 
 void ArithmeticOperations()
@@ -381,3 +594,4 @@ int main()
 	HomeScreen();
 	return(0);
 }
+
