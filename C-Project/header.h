@@ -24,4 +24,6 @@ int Palindrome(int num1);
 int IsPrimeNumber(int num1);
 void PrimeNumberRange(int min, int max);
 void SizeOfDataTypesInC();
-
+void Arrays();
+int DifferenceAltElements(int *, int);
+int RemoveIndexElement(int *, int, int);
