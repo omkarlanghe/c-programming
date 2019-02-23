@@ -1,28 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<stdbool.h>
-
-void HomeScreen();
-void CProgrammingFundamentals();
-void BitwiseOperators();
-void ArithmeticOperations();
-void ArmstrongNumber();
-void FibonacciSeries();
-int AdditionOfEven(int num1);
-int AdditionOfOdd(int num1);
-bool IsMultipleOfEight(int num1);
-bool IsMultipleOfSixteen(int num1);
-bool IsMultipleOfThirtyTwo(int num1);
-int CountOfZeroBits(int num1);
-int CountOfOneBits(int num1);
-bool IsOddEvenNumber(int num1);
-int MaximumNumber(int num1, int num2, int num3);
-int MinimumNumber(int num1, int num2, int num3);
-int LeapYear(int year);
-int Palindrome(int num1);
-int IsPrimeNumber(int num1);
-void PrimeNumberRange(int min, int max);
-void SizeOfDataTypesInC();
+#include "header.h"
 
 void HomeScreen()
 {
@@ -70,7 +49,7 @@ void HomeScreen()
 void BitwiseOperators()
 {
 	int choice = 0, retVal = 0;
-	int num1 = 0, evenSum = 0, oddSum = 0;
+	int num1 = 0, num2 = 0, evenSum = 0, oddSum = 0, noOfBits = 0, pos = 0, pos2 = 0;
 	printf("WELCOME TO BITWISE OPERATORS\n\n");
 	printf("Enter your choice:\n\n");
 	printf("1. Addition Of Even and Odd Digits\n"
@@ -81,8 +60,7 @@ void BitwiseOperators()
 			"6. Turn Off bits\n"
 			"7. Toggle bits\n"
 			"8. Swap bits\n"
-			"9. Turn Off right most one bit\n"
-			"10. Swap bits at different position\n");
+			"9. Turn Off right most one bit\n");
 	scanf("%d", &choice);
 
 	switch(choice)
@@ -154,18 +132,65 @@ void BitwiseOperators()
 			HomeScreen();
 			break;
 		case 5:
+			printf("Program to Turn On bits from given number.\n\n");
+			printf("Enter the number to check:\n");
+			scanf("%d",&num1);
+			printf("Enter the number of bits to Turn On:\n");
+			scanf("%d",&noOfBits);
+			printf("Enter Bit position:\n");
+			scanf("%d",&pos);
+			printf("Result Before turn on bits - %d\n", num1);
+			printf("Result After turn on bits - %d\n", TurnOnBits(num1,noOfBits,pos));
+			HomeScreen();
 			break;
 		case 6:
+			printf("Program to Turn Off bits from given number.\n\n");
+			printf("Enter the number to check:\n");
+			scanf("%d",&num1);
+			printf("Enter the number of bits to Turn off:\n");
+			scanf("%d",&noOfBits);
+			printf("Enter Bit position:\n");
+			scanf("%d",&pos);
+			printf("Result before turn off bits - %d\n", num1);
+			printf("Result After turn off bits - %d\n", TurnOffBits(num1,noOfBits,pos));
+			HomeScreen();
 			break;
 		case 7:
+			printf("Program to Toggle bits from given number.\n\n");
+			printf("Enter the number to check:\n");
+			scanf("%d",&num1);
+			printf("Enter the number of bits to toggle:\n");
+			scanf("%d",&noOfBits);
+			printf("Enter Bit position:\n");
+			scanf("%d",&pos);
+			printf("Result before toggling bits - %d\n", num1);
+			printf("Result After toggling bits - %d\n", ToggleBits(num1,noOfBits,pos));
+			HomeScreen();
 			break;
 		case 8:
+			printf("Program to Swap bits between two numbers.\n\n");
+			printf("Enter the first number:\n");
+			scanf("%d",&num1);
+			printf("Enter Position:\n");
+			scanf("%d",&pos);
+			printf("Enter the second number:\n");
+			scanf("%d",&num2);
+			printf("Enter Position:\n");
+			scanf("%d",&pos2);
+			printf("Enter the number of bits to swap:\n");
+			scanf("%d",&noOfBits);
+
+			printf("Bits before swapping:\nA.%d\nB.%d\n",num1, num2);
+			SwapBitsAtDiffPosition(num1, num2, pos, pos2, noOfBits);
+			HomeScreen();
 			break;
 		case 9:
+			printf("Program to Turn off right most one bit:\n\n");
+			printf("Enter the number:\n");
+			scanf("%d",&num1);
+			printf("Right most one bit off - %d\n", RightMostOneBitPosition(num1));
+			HomeScreen();
 			break;
-		case 10:
-			break;
-
 	}
 }
 void CProgrammingFundamentals()
@@ -283,6 +308,66 @@ void CProgrammingFundamentals()
 			SizeOfDataTypesInC();
 			break;
 	}
+}
+
+int RightMostOneBitPosition(int num1)
+{
+	return (num1&(num1-1));
+}
+
+int SwapBitsAtDiffPosition(int num1, int num2, int pos, int pos2, int noOfBits)
+{
+	int x = (1<<noOfBits)-1;
+
+	int temp1 = num1&(x<<(pos-noOfBits));
+	num1 = num1&(~(x<<(pos-noOfBits)));
+
+	int temp2 = num2&(x<<(pos2-noOfBits));
+	num2 = num2&(~(x<<(pos2-noOfBits)));
+
+	if(pos>pos2)
+	{
+		temp1 = temp1>>(pos-pos2);
+		temp2 = temp2<<(pos-pos2);
+	}
+	else
+	{
+		temp1 = temp1<<(pos-pos2);
+		temp2 = temp2>>(pos-pos2);
+	}
+
+	num1 = num1|temp2;
+	num2 = num2|temp1;
+
+	printf("Bits After Swapping:\nA.%d\nB.%d\n",num1,num2);
+}
+
+int TurnOnBits(int num1, int noOfBits, int pos)
+{
+	int x = 1;
+	x = (x<<noOfBits)-1;
+	x = x<<(pos-noOfBits);
+	
+	return num1|x;
+}
+
+int TurnOffBits(int num1, int noOfBits, int pos)
+{
+	int x = 1;
+	x = (x<<noOfBits)-1;
+	x = x<<(pos-noOfBits);
+	x = ~x;
+
+	return num1&x;
+}
+
+int ToggleBits(int num1, int noOfBits, int pos)
+{
+	int x = 1;
+	x = (x<<noOfBits)-1;
+	x = x<<(pos-noOfBits);
+
+	return num1^x;
 }
 
 bool IsOddEvenNumber(int num1)
