@@ -1,3 +1,6 @@
+#ifndef C_PROGRAMMING
+#define C_PROGRAMMING
+
 void HomeScreen();
 void CProgrammingFundamentals();
 void BitwiseOperators();
@@ -31,3 +34,9 @@ int SumOfDigitsFromArray(int *, int);
 int ArrayIndexJumping(int *, int, int, int);
 int ArrayMin(int *, int);
 int ArrayMax(int *, int);
+float AvgOfArrElements(int *, int);
+int AvgOfEvenNum(int *, int);
+int AvgOfOddNum(int *, int);
+int IntegerPalindrome(int *, int);
+
+#endif

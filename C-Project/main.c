@@ -51,6 +51,7 @@ void Arrays()
 {
 	int choice = 0, size, retVal, index, startIndex, endIndex, step;
 	int *array = NULL;
+	float ret;
 	printf("WELCOME TO ARRAYS IN C\n\n");
 	printf("Enter your choice:\n\n");
 	printf("1. 	Difference of alternative Sum of elements\n"
@@ -185,10 +186,58 @@ void Arrays()
 			HomeScreen();
 			break;
 		case 7:
+			printf("Program to find Average from given elements in an array\n\n");
+			printf("Enter the size of an array:\n");
+			scanf("%d",&size);
+
+			array = (int *)malloc(size*sizeof(int));
+			printf("Enter the elements in an array:\n");
+			for(int i = 0 ; i < size ; i++)
+				scanf("%d",&array[i]);
+
+			ret = AvgOfArrElements(array, size);
+			printf("Average of given elements from array is -> %f ",ret);
+			free(array);
+			printf("\n");
+			HomeScreen();
 			break;
 		case 8:
+			printf("Program to print average of even and odd numbers from array\n\n");
+			printf("Enter the size of an array:\n");
+			scanf("%d",&size);
+
+			array = (int *)malloc(size*sizeof(int));
+			printf("Enter the elements in an array:\n");
+			for(int i = 0 ; i < size ; i++)
+				scanf("%d",&array[i]);
+
+			retVal = AvgOfEvenNum(array,size);
+			printf("average of even numbers from array is -> %d ",retVal);
+			printf("\n");
+			retVal = AvgOfOddNum(array, size);
+			printf("average of odd numbers from array is -> %d ",retVal);
+			printf("\n");
+			free(array);
+			HomeScreen();
 			break;
 		case 9:
+			printf("Program to check if palindrom or not\n\n");
+			printf("Enter the size of an array:\n");
+			scanf("%d",&size);
+
+			array = (int *)malloc(size*sizeof(int));
+			printf("Enter the elements in an array:\n");
+			for(int i = 0 ; i < size ; i++)
+				scanf("%d",&array[i]);
+
+			retVal = IntegerPalindrome(array,size);
+			if(retVal == 0)
+				printf("Elements in an array are palindrom\n");
+			else
+				printf("Elements in an array are not palindrom\n");
+			printf("\n");
+			free(array);
+			HomeScreen();
 			break;
 		case 10:
 			break;
@@ -460,6 +509,76 @@ void CProgrammingFundamentals()
 			SizeOfDataTypesInC();
 			break;
 	}
+}
+int IntegerPalindrome(int *array, int size)
+{
+	int flag = 0;
+	for(int i = 0, j = size-1 ; i<size/2 ; i++ , j--)
+		if(array[i] != array[j])
+			flag = 1;
+		else
+			flag = 0;
+	return(flag);
+}
+
+int AvgOfEvenNum(int *array, int size)
+{
+	int sum = 0, oddCount = 0, evenCount = 0;
+	int retVal = 0;
+	for(int i = 0 ; i < size ; i++)
+	{
+		if((array[i]&1) == 0)
+		{
+			sum += array[i];
+			//printf("sum -> %d\n",sum);
+			if(array[i]&1)
+			{
+				oddCount++;
+			}
+			else
+			{
+				evenCount++;
+				//printf("ec -> %d\n", evenCount);
+			}
+		}
+	}
+	retVal = sum/evenCount;
+	return(retVal);
+}
+
+int AvgOfOddNum(int *array, int size)
+{
+	int sum = 0, oddCount = 0, evenCount = 0;
+	int retVal = 0;
+	for(int i = 0 ; i < size ; i++)
+	{
+		if((array[i]&1) != 0)
+		{
+			sum += array[i];
+			//printf("sum -> %d\n",sum);
+			if(array[i]&1)
+			{
+				oddCount++;
+				//printf("oc -> %d\n",oddCount);
+			}
+			else
+			{
+				evenCount++;
+			}
+		}
+	}
+	retVal = sum/oddCount;
+	return(retVal);
+}
+
+float AvgOfArrElements(int *array, int size)
+{
+	int sum = 0;
+       	float result;	
+	for(int i = 0; i < size ; i++)
+		sum += array[i];
+	result = sum/size;
+	return(result);
 }
 
 int ArrayMin(int *array, int size)
