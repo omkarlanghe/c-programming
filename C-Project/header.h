@@ -27,3 +27,7 @@ void SizeOfDataTypesInC();
 void Arrays();
 int DifferenceAltElements(int *, int);
 int RemoveIndexElement(int *, int, int);
+int SumOfDigitsFromArray(int *, int);
+int ArrayIndexJumping(int *, int, int, int);
+int ArrayMin(int *, int);
+int ArrayMax(int *, int);

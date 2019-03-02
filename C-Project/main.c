@@ -49,7 +49,7 @@ void HomeScreen()
 }
 void Arrays()
 {
-	int choice = 0, size, retVal, index;
+	int choice = 0, size, retVal, index, startIndex, endIndex, step;
 	int *array = NULL;
 	printf("WELCOME TO ARRAYS IN C\n\n");
 	printf("Enter your choice:\n\n");
@@ -71,7 +71,7 @@ void Arrays()
 	{
 		case 1:
 			printf("Program to print difference of alternative sum of elements\n\n");
-			printf("Enter the size of the array:\n");
+			printf("Enter the size of an array:\n");
 			scanf("%d", &size);
 
 			array = (int *)malloc(size*sizeof(int));
@@ -87,7 +87,7 @@ void Arrays()
 			break;
 		case 2:
 			printf("Program to remove index element:\n\n");
-			printf("Enter the size of the array:\n");
+			printf("Enter the size of an array:\n");
 			scanf("%d", &size);
 
 			array = (int *)malloc(size*sizeof(int));
@@ -107,12 +107,82 @@ void Arrays()
 			HomeScreen();
 			break;
 		case 3:
+			printf("Program returning Sum of digits from given array:\n\n");
+			printf("Enter the size of an array:\n");
+			scanf("%d", &size);
+
+			array = (int *)malloc(size*sizeof(int));
+			printf("Enter the elements in an array:\n");
+			for(int i = 0 ; i < size ; i++)
+				scanf("%d",&array[i]);
+			printf("original elements in an array are\n");
+			for(int i = 0 ; i < size ; i++)
+				printf("%d ", array[i]);
+			printf("\n");
+			SumOfDigitsFromArray(array, size);
+			printf("\n");
+			free(array);
+			HomeScreen();
 			break;
 		case 4:
+			printf("Program to print array from start index, end index and step size by user\n\n");
+			printf("Enter the size of an array:\n");
+			scanf("%d",&size);
+
+			array = (int *)malloc(size*sizeof(int));
+			
+			printf("Enter the elements in an array:\n");
+			for(int i = 0 ; i < size ; i++)
+				scanf("%d", &array[i]);
+
+			printf("Enter the index from where you want to print an array:\n");
+			scanf("%d",&startIndex);
+			printf("Enter the index till you want to print an array:\n");
+			scanf("%d",&endIndex);
+			printf("Enter the step size of an array:\n");
+			scanf("%d",&step);
+			ArrayIndexJumping(array, startIndex, endIndex, step);
+			printf("\n");
+			free(array);
+			HomeScreen();
 			break;
 		case 5:
+			printf("Program to print maximum and minimum from an array\n\n");
+			printf("Enter the size of an array:\n");
+			scanf("%d",&size);
+
+			array = (int *)malloc(size*sizeof(int));
+
+			printf("Enter the elements in an array:\n");
+			for(int i = 0 ; i < size ; i++)
+				scanf("%d", &array[i]);
+
+			retVal = ArrayMin(array,size);
+			printf("minimum number from given array is -> %d ",retVal);
+			printf("\n");
+
+			retVal = ArrayMax(array,size);
+			printf("maximum number from given array is -> %d ",retVal);
+			printf("\n");
+
+			free(array);
+			HomeScreen();
 			break;
 		case 6:
+			printf("Program to print reverse of an array\n\n");
+			printf("Enter the size of an array:\n");
+			scanf("%d",&size);
+			array = (int *)malloc(size*sizeof(int));
+			printf("Enter the elements in an array:\n");
+			for(int i = 0 ; i < size ; i++)
+				scanf("%d",&array[i]);
+
+			printf("Reverse of an array is:\n");
+			for(int i = size-1 ; i >= 0 ; i--)
+				printf("%d ",array[i]);
+			free(array);
+			printf("\n");
+			HomeScreen();
 			break;
 		case 7:
 			break;
@@ -391,6 +461,54 @@ void CProgrammingFundamentals()
 			break;
 	}
 }
+
+int ArrayMin(int *array, int size)
+{
+	int min;
+	min = array[0];
+	for(int i = 1 ; i < size ; i++)
+		if(min > array[i])
+			min = array[i];
+	return min;
+}
+
+int ArrayMax(int *array, int size)
+{
+	int max;
+	max = array[0];
+	for(int i = 1 ; i < size ; i++)
+		if(max < array[i])
+			max = array[i];
+	return max;
+}
+
+int ArrayIndexJumping(int *array, int startIndex, int endIndex, int stepSize)
+{
+	for(int i = startIndex ; i < endIndex ; i = i + stepSize)
+		printf("arr[%d]\n", array[i]);
+}
+
+int SumOfDigitsFromArray(int *array, int size)
+{
+	int temp;
+	int rem, sum, arraySum;
+	for(int i = 0 ; i < size ; i++)
+	{
+		temp = 0;
+		rem = 0, sum = 0,arraySum = 0;
+		temp = array[i];		
+		
+		while(temp!=0)
+		{
+			rem = temp%10;
+			sum = sum + rem;
+			temp = temp/10;
+		}
+		printf("sum of digits from %dth index -> %d\n", i,  sum);
+	}
+	printf("\n");
+}
+
 int RemoveIndexElement(int *array, int size, int index)
 {
 	if(index <= size)
@@ -406,6 +524,7 @@ int RemoveIndexElement(int *array, int size, int index)
 		printf("unable to remove, index not found..\n");
 	}
 }
+
 int DifferenceAltElements(int array[], int size)
 {
 	int firstsum = 0, secsum = 0, difference = 0;
@@ -420,6 +539,7 @@ int DifferenceAltElements(int array[], int size)
 		difference = secsum - firstsum;
 	return(difference);
 }
+
 int RightMostOneBitPosition(int num1)
 {
 	return (num1&(num1-1));
