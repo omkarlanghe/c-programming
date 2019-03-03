@@ -38,5 +38,10 @@ float AvgOfArrElements(int *, int);
 int AvgOfEvenNum(int *, int);
 int AvgOfOddNum(int *, int);
 int IntegerPalindrome(int *, int);
+int ConsucutiveSubSequence(int *, int);
+int SecondMax(int *, int);
+int SecondMin(int *, int);
+int StringPalindrom(char *, int);
+void Pointers();
 
 #endif

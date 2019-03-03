@@ -12,11 +12,12 @@ void HomeScreen()
 	printf("1. 	Basic Programs\n"
 			"2. 	Bitwise Operators\n"
 			"3. 	Arrays\n"
-			"4. 	Pointers\n"
+			"4. 	Pointers with Strings\n"
 			"5. 	Recursion\n"
-			"6. 	Strings\n"
-			"7. 	Pattern Programs\n"
-			"8. 	Exit\n");
+			"6.	Structure\n"
+			"7.	File Handling\n"
+			"8. 	Pattern Programs\n"
+			"9. 	Exit\n");
 	scanf("%d",&choice);
 	
 	switch(choice)
@@ -34,6 +35,8 @@ void HomeScreen()
 			Arrays();
 			break;
 		case 4:
+			printf("This section contain's all the basic program's required to understande Pointers\n\n");
+			Pointers();
 			break;
 		case 5:
 			break;
@@ -42,15 +45,61 @@ void HomeScreen()
 		case 7:
 			break;
 		case 8:
+			break;
+		case 9:
 			exit(0);
 			break;
-
 	}	
 }
+
+void Pointers()
+{
+	int choice = 0;
+
+	printf("WELCOME TO POINTERS IN C\n\n");
+	printf("Enter your choice:\n\n");
+	printf("1.	Pointer Expression\n"
+			"2.	Pointer Arithmetic\n"
+			"3.	String length\n"
+			"4.	word and character count\n"
+			"5.	Lower and Upper case\n"
+			"6.	Character occurance\n"
+			"7.	String Reverse\n"
+			"8.	String Comparison\n"
+			"9.	String Concatination\n"
+			"10. 	Swap By Value, Swap by Reference\n");
+	scanf("%d", &choice);
+
+	switch(choice)
+	{
+		case 1:
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		case 4:
+			break;
+		case 5:
+			break;
+		case 6:
+			break;
+		case 7:
+			break;
+		case 8:
+			break;
+		case 9:
+			break;
+		case 10:
+			break;
+	}
+}
+
 void Arrays()
 {
 	int choice = 0, size, retVal, index, startIndex, endIndex, step;
 	int *array = NULL;
+	char *str = NULL;
 	float ret;
 	printf("WELCOME TO ARRAYS IN C\n\n");
 	printf("Enter your choice:\n\n");
@@ -240,10 +289,57 @@ void Arrays()
 			HomeScreen();
 			break;
 		case 10:
+			printf("Program to find largest subsequence from the given array\n\n");
+			printf("Enter the size of an array:\n");
+			scanf("%d",&size);
+
+			array = (int *)malloc(size*sizeof(int));
+			printf("Enter the elements in an array:\n");
+			for(int i = 0 ; i < size ; i++)
+				scanf("%d",&array[i]);
+
+			retVal = ConsucutiveSubSequence(array, size);
+			printf("Length of consucutive sub sequence is: %d ", retVal);
+			printf("\n");
+			free(array);
+			HomeScreen();
 			break;
 		case 11:
+			printf("Program to find second max and second min from given array\n\n");
+			printf("Enter the size of an array:\n");
+			scanf("%d",&size);
+
+			array = (int *)malloc(size*sizeof(int));
+			printf("Enter the elements in an array:\n");
+			for(int i = 0 ; i < size ; i++)
+				scanf("%d",&array[i]);
+
+			retVal = SecondMin(array, size);
+			printf("Second min from the given array is: %d\n", retVal);
+			retVal = SecondMax(array, size);
+			printf("Second max from the given array is: %d\n", retVal);
+			printf("\n");
+			free(array);
+			HomeScreen();
 			break;
 		case 12:
+			printf("Program to check if given string is palindrom of not\n\n");
+			printf("Enter the size of an array:\n");
+			scanf("%d",&size);
+			
+			str = (char *)malloc(size*sizeof(int));
+			printf("Enter the string in an array:\n");
+			scanf("%s",str);
+
+			retVal = StringPalindrom(str, size);
+
+			if(retVal == 0)
+				printf("The given string is palindrom\n");
+			else
+				printf("The given string is not palindrom\n");
+			printf("\n");
+			free(array);
+			HomeScreen();
 			break;
 	}
 }
@@ -510,6 +606,100 @@ void CProgrammingFundamentals()
 			break;
 	}
 }
+
+int StringPalindrom(char *array, int size)
+{
+	int flag = 0;
+	for(int i = 0, j = size - 1 ; i < size/2 ; i++ , j--)
+	{
+		if(array[i] != array[j])
+		{
+			flag = 1;
+			break;
+		}
+	}
+	return flag;
+}
+
+int SecondMax(int *array, int size)
+{
+	int max = array[1], secondMax = array[0];
+
+	if(array[0] > array[1])
+	{
+		max = array[0];
+		secondMax = array[1];
+	}
+
+	for(int i = 2 ; i < size ; i++)
+	{
+		if(array[i] > max)
+		{
+			secondMax = max;
+			max = array[i];
+		}
+		else if(array[i] > secondMax)
+		{
+			secondMax = array[i];
+		}
+	}
+	return secondMax;
+}
+
+int SecondMin(int *array, int size)
+{
+	int min = array[1], secondMin = array[0];
+
+	if(array[1] > array[0])
+	{
+		min = array[0];
+		secondMin = array[1];
+	}
+
+	for(int i = 2 ; i < size ; i++)
+	{
+		if(array[i] < min)
+		{
+			secondMin = min;
+			min = array[i];
+		}
+		else if(array[i] < secondMin)
+		{
+			secondMin = array[i];
+		}
+	}
+	return secondMin;
+}
+
+int ConsucutiveSubSequence(int *array, int size)
+{
+	if(array == NULL)
+		return 0;
+	int result = 1;
+	int seqLength = 1;
+	for(int i = 0 ; i < size-1 ; i++)
+	{
+		if(array[i+1] == array[i]+1)
+		{
+			seqLength++;
+			if(i+1 == size-1 && seqLength > result)
+			{
+				result = seqLength;
+			}
+			continue;
+		}
+		else
+		{
+			if(seqLength > result)
+			{
+				result = seqLength;
+			}
+			seqLength = 1;
+		}
+	}
+	return result;
+}
+
 int IntegerPalindrome(int *array, int size)
 {
 	int flag = 0;
